@@ -1,0 +1,29 @@
+GET http://localhost:3000/subscribers
+
+###
+
+GET http://localhost:3000/subscribers/65953e74a5141e544cd74897
+
+###
+
+POST http://localhost:3000/subscribers
+Content-Type:  application/json
+
+{
+    "name":"Rajnish",
+    "subscribedToChannel": "Web Dev Simplified",
+    "subscribeDate": "2024-01-03"
+}
+
+###
+
+DELETE http://localhost:3000/subscribers/65953e74a5141e544cd74897
+
+###
+
+PATCH http://localhost:3000/subscribers/65953e74a5141e544cd74897
+Content-Type: application/json
+
+{
+    "name": "New Rajnish"
+}
