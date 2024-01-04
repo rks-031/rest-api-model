@@ -2,7 +2,7 @@ GET http://localhost:4000/shoes
 
 ###
 
-GET http://localhost:4000/shoes/6596ba655e56afc95a8fd334
+GET http://localhost:4000/shoes/6596be73be94523e717da1a2
 
 ###
 
@@ -13,4 +13,18 @@ Content-Type: application/json
     "brand": "Nike",
     "color": "Black",
     "size": 9
+}
+
+###
+
+DELETE http://localhost:4000/shoes/6596be66be94523e717da19f
+
+
+###
+
+PATCH http://localhost:4000/shoes/6596be73be94523e717da1a2
+Content-Type: application/json
+
+{
+    "size":8
 }

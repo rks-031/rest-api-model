@@ -36,7 +36,27 @@ router.post("/", async (req, res) => {
 });
 
 // Updating one shoe
-router.patch("/:id", async (req, res) => {});
+router.patch("/:id", getShoe, async (req, res) => {
+  //we update only those things which are requested to us
+  if (req.body.brand != null) {
+    res.shoe.brand = req.body.brand;
+  }
+  if (req.body.color != null) {
+    res.shoe.color = req.body.color;
+  }
+  if (req.body.size != null) {
+    res.shoe.size = req.body.size;
+  }
+  if (req.body.manufacturingDate != null) {
+    res.shoe.manufacturingDate = req.body.manufacturingDate;
+  }
+  try {
+    const updatedshoe = await res.shoe.save();
+    res.json(updatedshoe);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 // Deleting one shoe
 router.delete("/:id", getShoe, async (req, res) => {
