@@ -38,4 +38,9 @@ To use this create a file with a .rest extension and all the urls for different 
 <br/>
 ![image](https://github.com/rks-031/rest-api-model/assets/103258259/a2a6fb50-149e-4d72-a075-17453b1cd3ee)
 
+--------------------------------------------------------------------------------------------------------------
+
+![image](https://github.com/rks-031/rest-api-model/assets/103258259/cca8f0ae-cc05-41ef-a612-d55951c3610f)
+
+
 
