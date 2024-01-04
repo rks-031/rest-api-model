@@ -19,6 +19,10 @@ db.once("open", () => {
 
 app.use(express.json()); //json is setup
 
+const shoesRouter = require("./routes/routes.js"); //setup my route
+
+app.use("/shoes", shoesRouter);
+
 app.listen(4000, () => {
   console.log("Listening to the port 3000");
 });
