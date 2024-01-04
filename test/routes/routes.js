@@ -35,10 +35,30 @@ router.post("/", async (req, res) => {
   }
 });
 
+//updating one
+router.patch("/:id", async (req, res) => {});
+
+async function getShoe(req, res, next) {
+  let shoe;
+  try {
+    shoe = await joota.findById(req.param.id);
+    //check if the shoe exists
+    if (shoe == null) {
+      return res
+        .status(404)
+        .json({ message: "bad request since shoe does not exists" });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+
+  res.shoe = shoe;
+  next();
+}
+
 //deleting one
 router.delete("/:id", (req, res) => {});
 
-//updating one
-router.patch("/:id", (req, res) => {});
-
 module.exports = router;
+
+//using async is because we're gonna be accessing the database inside of that method
