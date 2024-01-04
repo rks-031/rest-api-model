@@ -2,14 +2,23 @@ const express = require("express");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello");
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+mongoose.connect(process.env.DATABASE_URL);
+
+const db = mongoose.connection;
+
+db.on("error", (error) => {
+  console.log("error");
 });
 
-app.get("/about", (req, res) => {
-  res.send("Hello from about page");
+db.once("open", () => {
+  console.log("Connected to database");
 });
 
-app.listen(3000, () => {
+app.use(express.json()); //json is setup
+
+app.listen(4000, () => {
   console.log("Listening to the port 3000");
 });
