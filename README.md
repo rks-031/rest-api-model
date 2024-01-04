@@ -9,3 +9,13 @@ Source: `Web Dev Simplified`
 4. Create the route
 5. Create the model
 6. Test your API
+
+# Connection:
+
+**In .env file:** DATABASE_URL = mongodb://localhost/shoes <just an example >
+<br/>
+**In server.js file:** <br/>
+const mongoose = require("mongoose"); <br/>
+require("dotenv").config();
+
+mongoose.connect(process.env.DATABASE_URL);
