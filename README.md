@@ -19,3 +19,14 @@ const mongoose = require("mongoose"); <br/>
 require("dotenv").config();
 
 mongoose.connect(process.env.DATABASE_URL);
+
+# To check if database is connected:
+const db = mongoose.connection; <br/>
+
+db.on("error", (error) => {
+  console.log("error");
+}); <br/>
+
+db.once("open", () => {
+  console.log("Connected to database");
+});
