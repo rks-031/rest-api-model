@@ -2,16 +2,15 @@ GET http://localhost:4000/shoes
 
 ###
 
-GET http://localhost:4000/shoes/15
+GET http://localhost:4000/shoes/6596ba655e56afc95a8fd334
 
 ###
 
 POST http://localhost:4000/shoes/
-
 Content-Type: application/json
 
 {
-    "brand":"Nike",
-    "color":"Black",
-    "size": 9,
+    "brand": "Nike",
+    "color": "Black",
+    "size": 9
 }

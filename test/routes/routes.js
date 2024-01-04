@@ -3,7 +3,7 @@ const router = express.Router();
 
 const joota = require("../models/shoes.js");
 
-//getting all
+// Getting all shoes
 router.get("/", async (req, res) => {
   try {
     const joote = await joota.find();
@@ -13,12 +13,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-//getting one
-router.get("/:id", (req, res) => {
-  res.send(req.params.id);
+// Getting one shoe
+router.get("/:id", getShoe, (req, res) => {
+  res.json(res.shoe);
 });
 
-//creating one
+// Creating one shoe
 router.post("/", async (req, res) => {
   const shoe = new joota({
     brand: req.body.brand,
@@ -35,30 +35,36 @@ router.post("/", async (req, res) => {
   }
 });
 
-//updating one
+// Updating one shoe
 router.patch("/:id", async (req, res) => {});
 
+// Deleting one shoe
+router.delete("/:id", getShoe, async (req, res) => {
+  try {
+    await joota.findByIdAndDelete(req.params.id);
+    res.json({ message: "Shoe deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Middleware to get a single shoe by ID
 async function getShoe(req, res, next) {
   let shoe;
   try {
-    shoe = await joota.findById(req.param.id);
-    //check if the shoe exists
+    shoe = await joota.findById(req.params.id);
+    // Check if the shoe exists
     if (shoe == null) {
       return res
         .status(404)
-        .json({ message: "bad request since shoe does not exists" });
+        .json({ message: "Bad request since shoe does not exist" });
+    } else {
+      res.shoe = shoe;
+      next();
     }
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
-
-  res.shoe = shoe;
-  next();
 }
 
-//deleting one
-router.delete("/:id", (req, res) => {});
-
 module.exports = router;
-
-//using async is because we're gonna be accessing the database inside of that method
