@@ -30,3 +30,12 @@ db.on("error", (error) => {
 db.once("open", () => {
   console.log("Connected to database");
 });
+
+
+# Extension used for testing the API
+REST Client<br/>
+To use this create a file with a .rest extension and all the urls for different operations.
+<br/>
+![image](https://github.com/rks-031/rest-api-model/assets/103258259/a2a6fb50-149e-4d72-a075-17453b1cd3ee)
+
+
