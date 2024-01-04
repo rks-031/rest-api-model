@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const shoe = require("../models/shoes.js");
+const joota = require("../models/shoes.js");
 
 //getting all
 router.get("/", async (req, res) => {
-  res.send("Hello");
+  try {
+    const joote = await joota.find();
+    res.json(joote);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 //getting one
@@ -14,7 +19,21 @@ router.get("/:id", (req, res) => {
 });
 
 //creating one
-router.post("/", (req, res) => {});
+router.post("/", async (req, res) => {
+  const shoe = new joota({
+    brand: req.body.brand,
+    color: req.body.color,
+    size: req.body.size,
+    manufacturingDate: req.body.manufacturingDate,
+  });
+
+  try {
+    const newjoota = await shoe.save();
+    res.status(201).json(newjoota);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 
 //deleting one
 router.delete("/:id", (req, res) => {});
